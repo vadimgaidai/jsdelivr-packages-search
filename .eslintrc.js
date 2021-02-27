@@ -57,6 +57,7 @@ module.exports = {
 				order: ['template', 'script', 'style'],
 			},
 		],
+		'consistent-return': 'off',
 		'vue/camelcase': ['error', { properties: 'never', ignoreDestructuring: false }],
 		'vue/component-definition-name-casing': ['error', 'PascalCase'],
 		'vue/component-name-in-template-casing': ['error', 'kebab-case'],

@@ -9,7 +9,8 @@
 }
 
 html {
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 	scroll-behavior: smooth;
 }
 
@@ -107,5 +108,5 @@ video {
 .v-application--wrap {
 	display: grid;
 	grid-template-rows: auto 1fr auto;
-	height: 100vh;
+	min-height: 100vh;
 }

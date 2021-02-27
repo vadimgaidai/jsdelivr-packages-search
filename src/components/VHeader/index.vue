@@ -1,5 +1,7 @@
 <template>
-	<header :class="[$style.header]">header</header>
+	<header :class="[$style.header]">
+		<h1 :class="[$style.title]">JsDelivr search</h1>
+	</header>
 </template>
 
 <script>
