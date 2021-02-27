@@ -1,14 +1,13 @@
 <template>
-	<header class="header"></header>
+	<header :class="[$style.header]">header</header>
 </template>
 
 <script>
 export default {
 	name: 'VHeader',
-	data() {
-		return {}
-	},
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" module>
+@import './v-header.scss';
+</style>

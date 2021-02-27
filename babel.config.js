@@ -13,5 +13,13 @@ module.exports = {
 			},
 		],
 	],
-	plugins: ['@babel/plugin-transform-runtime', ['module:fast-async', { spec: true }]],
+	plugins: [
+		'@babel/plugin-transform-runtime',
+		[
+			'module:fast-async',
+			{
+				spec: true,
+			},
+		],
+	],
 }

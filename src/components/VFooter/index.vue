@@ -1,6 +1,6 @@
 <template>
-	<footer class="footer">
-		<a href="https://github.com/vadimgaidai" target="_blunk">
+	<footer :class="[$style.footer]">
+		<a :class="[$style.link]" href="https://github.com/vadimgaidai" target="_blunk">
 			@github
 		</a>
 	</footer>
@@ -9,10 +9,9 @@
 <script>
 export default {
 	name: 'VFooter',
-	data() {
-		return {}
-	},
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" module>
+@import './v-footer.scss';
+</style>
