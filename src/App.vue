@@ -27,6 +27,7 @@
 					/>
 				</v-card>
 				<package-modal :is-visible.sync="isDialog" :title="getPackageName" :type="getPackageType" />
+				<v-notification />
 			</v-container>
 		</v-main>
 		<v-footer />
@@ -38,12 +39,14 @@ import { mapActions, mapState } from 'vuex'
 
 import VHeader from '@/components/VHeader'
 import PackageModal from '@/components/modals/list/PackageModal'
+import VNotification from '@/components/VNotification'
 import VFooter from '@/components/VFooter'
 
 export default {
 	components: {
 		VHeader,
 		PackageModal,
+		VNotification,
 		VFooter,
 	},
 	data() {

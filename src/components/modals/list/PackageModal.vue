@@ -21,6 +21,7 @@
 </template>
 <script>
 import VModal from '@/components/modals/VModal.vue'
+import { mapMutations } from 'vuex'
 
 export default {
 	name: 'PackageModal',
@@ -57,18 +58,23 @@ export default {
 		},
 	},
 	methods: {
+		...mapMutations('notification', ['setNotification']),
 		async onLoadPackageVersions() {
 			this.isLoading = true
 			try {
 				const {
 					data: { tags, versions },
-				} = await this.$api.packages.getPackageVersions(this.title, this.type)
+				} = await this.$api.packages.getPackage(this.title, this.type)
 				if (this.type !== 'gh') {
 					this.tags = tags
 				}
 				this.versions = versions
 			} catch (e) {
-				console.log(e)
+				this.setNotification({
+					color: 'error',
+					message: 'Failed to load package',
+				})
+				this.$emit('update:is-visible', false)
 			}
 			this.isLoading = false
 		},

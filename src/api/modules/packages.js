@@ -8,14 +8,9 @@ export default ({ request }) => ({
 			},
 		})
 	},
-	getPackageVersions(name, type) {
+	getPackage(name, type) {
 		return request({
 			url: `package/${type}/${name}`,
-		})
-	},
-	getPackageByVersion(name, type, version) {
-		return request({
-			url: `package/${type}/${name}@${version}/stats?`,
 		})
 	},
 })
