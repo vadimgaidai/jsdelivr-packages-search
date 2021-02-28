@@ -16,13 +16,17 @@
 						/>
 					</v-card-title>
 					<v-data-table
+						:page="page"
+						:options.sync="options"
 						:headers="headers"
 						:items="packages"
-						:loading="packages.length === 0"
+						:loading="loading"
 						:items-per-page="10"
 						:search="search"
+						@click:row="onRowClick"
 					/>
 				</v-card>
+				<package-modal :is-visible.sync="isDialog" :title="getPackageName" :type="getPackageType" />
 			</v-container>
 		</v-main>
 		<v-footer />
@@ -33,16 +37,23 @@
 import { mapActions, mapState } from 'vuex'
 
 import VHeader from '@/components/VHeader'
+import PackageModal from '@/components/modals/list/PackageModal'
 import VFooter from '@/components/VFooter'
 
 export default {
 	components: {
 		VHeader,
+		PackageModal,
 		VFooter,
 	},
 	data() {
 		return {
+			loading: true,
+			isDialog: false,
+			page: 1,
+			options: {},
 			search: '',
+			package: {},
 			headers: [
 				{ text: 'Name', value: 'name' },
 				{ text: 'Type', value: 'type' },
@@ -52,12 +63,39 @@ export default {
 	},
 	computed: {
 		...mapState('packages', ['packages']),
+		getPackageName() {
+			return this.package?.name
+		},
+		getPackageType() {
+			return this.package?.type
+		},
 	},
-	async mounted() {
-		await this.loadPackages()
+	watch: {
+		options: {
+			handler() {
+				// TODO: Api does not give the maximum number of pages (or I didn't find)
+				if (this.options.page <= 5 && this.options.page > this.page) {
+					this.page++
+					this.onLoadTableContent(this.page)
+				}
+			},
+		},
+		deep: true,
+	},
+	mounted() {
+		this.onLoadTableContent()
 	},
 	methods: {
 		...mapActions('packages', ['loadPackages']),
+		onLoadTableContent() {
+			this.loading = true
+			this.loadPackages(this.page)
+			this.loading = false
+		},
+		onRowClick(event) {
+			this.isDialog = true
+			this.package = event
+		},
 	},
 }
 </script>

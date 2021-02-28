@@ -4,8 +4,18 @@ export default ({ request }) => ({
 			url: 'stats/packages?',
 			params: {
 				page,
-				limit: 10,
+				limit: 20,
 			},
+		})
+	},
+	getPackageVersions(name, type) {
+		return request({
+			url: `package/${type}/${name}`,
+		})
+	},
+	getPackageByVersion(name, type, version) {
+		return request({
+			url: `package/${type}/${name}@${version}/stats?`,
 		})
 	},
 })
