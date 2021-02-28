@@ -1,6 +1,6 @@
 module.exports = {
 	devServer: {
-		proxy: process.env.VUE_APP_API,
+		proxy: 'https://data.jsdelivr.com/v1/',
 	},
 	pwa: {
 		name: 'Vue.js',
